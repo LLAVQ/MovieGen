@@ -1,6 +1,5 @@
 /* src/assets/styles.css */
-/* Paste the entire content of the original <style> tag from the HTML here */
-/* (This is the same CSS provided in the previous comprehensive answer) */
+/* Paste the entire content of the original <style> tag / your styles.css here */
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -168,6 +167,8 @@ input[type="file"] { display: none; }
   padding-bottom: 120px; /* Add padding to prevent input area from covering log */
 }
 
+/* Removed Soldier visual style as the image is removed from AnalysisSection */
+/*
 .soldier-visual {
   width: 100%;
   max-width: 600px;
@@ -183,6 +184,8 @@ input[type="file"] { display: none; }
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+*/
+
 
 .progress-container {
   width: 100%;
