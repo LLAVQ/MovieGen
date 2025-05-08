@@ -22,6 +22,7 @@ header {
   position: relative;
   font-weight: bold;
   transition: 0.3s ease;
+
 }
 .logo::after {
   content: 'через века, через года...';
@@ -32,7 +33,7 @@ header {
   opacity: 0;
   white-space: nowrap;
   transform: translateY(10px);
-  transition: all 0.4s ease;
+  transition: all 3s ease;
 }
 .logo:hover::after {
   opacity: 1;
@@ -41,12 +42,23 @@ header {
 
 .gallery-container {
   display: flex;
-  overflow-x: auto;
+  overflow-x: auto; /* Keep this for horizontal scrolling */
   scroll-snap-type: x mandatory;
   margin-top: 100px;
   padding: 40px 0;
   justify-content: center;
+
+  /* --- Styles to hide scrollbar --- */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+  /* --- End Styles to hide scrollbar --- */
 }
+
+/* --- Styles specifically for Webkit browsers (Chrome, Safari) --- */
+.gallery-container::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+/* --- End Webkit styles --- */
 
 .hidden { display: none !important; }
 
@@ -110,9 +122,9 @@ header {
   background-color: #1e1e1e;
   border-radius: 12px;
   padding: 12px 20px;
+  margin-bottom: 50px;
   width: 60%;
   max-width: 800px;
-  border: 2px dashed #555;
 }
 
 .morph-label {
@@ -155,6 +167,7 @@ header {
 
 .attachment-preview {
   margin-top: 20px;
+  margin-bottom: 100px;
   font-size: 0.9rem;
   color: #bbb;
   text-align: center;
@@ -213,7 +226,6 @@ input[type="file"] { display: none; }
 }
 
 .log-entry {
-  border: 2px dotted #888;
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;

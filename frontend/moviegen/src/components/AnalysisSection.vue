@@ -47,7 +47,6 @@ const scrollToBottom = () => {
     });
   }
 };
-// --- End FIX ---
 
 
 // Watch logEntries array for changes

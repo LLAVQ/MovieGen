@@ -136,7 +136,7 @@ async def websocket_endpoint(websocket: WebSocket):
                     if stop_requested: break # Stop if requested
 
                     # Simulate file processing time
-                    await asyncio.sleep(2 + (random.random() * 1)) # Fake processing delay (2-3 seconds)
+                    await asyncio.sleep(0.5 + (random.random() * 1)) # Fake processing delay (2-3 seconds)
 
                     # Mark file processing as complete
                     completed_items += 1
