@@ -1,52 +1,122 @@
-# Text Animator Tool
+# VidSynthAI
 
-Text Animator Tool is a powerful AI-driven application that generates animated movies from text and uploaded files. It leverages the latest technology to bring your ideas to life through dynamic animations and seamless workflows.
+**VidSynthAI** is an AI-powered web app that transforms uploaded documents and images into stylish, narrated videos. It uses GPT for understanding content, FFmpeg for video generation, and several specialized tools for visual effects, watermarking, and audio.
+
+---
 
 ## Features
 
-- **AI-Driven Content Creation**: Automatically animate text to create stunning movies.
-- **File Upload Support**: Upload files to integrate into your animations.
-- **Customizable Animations**: Fine-tune the animation styles and preferences.
-- **Fast Performance**: Built on Vue, FastAPI, and PostgreSQL for a smooth and fast experience.
-- **User-Friendly Interface**: Designed to be intuitive and easy to use.
+- Upload PDFs, DOCX, Excel, images
+- GPT-powered content summarization
+- Video storyboard planning via YAML/JSON
+- Real-time UI updates via WebSocket
+- Stylized video rendering using FFmpeg and effects
+- Voiceover with AI TTS (Step-Audio)
+- Optional watermarking for unpaid users
+- Captcha protection using CAP
 
-## Installation
-
-To install and run the project, follow these simple steps:
-
-1. Clone the repository to your local machine.
-2. Run the installation script:
-   ```bash
-   bash install.sh
-   ```
-3. Start the application:
-   ```bash
-   bash run.sh
-   ```
-
-## Usage
-
-1. Open the application in your browser.
-2. Input your text or upload files for animation.
-3. Customize the animation settings as needed.
-4. Generate and download your animated movie.
+---
 
 ## Technologies Used
 
-- **Frontend**: Vue.js
-- **Backend**: FastAPI
-- **Database**: PostgreSQL
+### Frontend
+- Vue 3 (Composition API)
+- Tailwind CSS
+- Anime.js / VueUse Motion
+- WebSocket (real-time updates)
 
-## Contributing
+### Backend
+- FastAPI
+- Redis + Celery
+- PostgreSQL (optional)
+- Docker Compose
 
-We welcome contributions to the project! If you have ideas for new features or improvements, feel free to submit them.
+### Video & Media
+- FFmpeg
+- [ltxv.video](https://ltxv.video/)
+- [WAN 2.1](https://github.com/facebookresearch/wav2lip) (neural animation)
+- [Step-Audio](https://github.com/stepfun-ai/Step-Audio)
+- [VideoSeal](https://github.com/facebookresearch/videoseal)
+- [textbehindvideo](https://github.com/tansihmittal/textbehindvideo)
 
-For suggestions, feedback, or inquiries, please reach out to us at: **hfwuds98@duck.com**
+---
+
+## Project Structure
+
+```
+/videos/
+  /task-<uuid>/
+    input/
+    plan.yaml
+    audio/
+    frames/
+    final/
+```
+
+---
+
+## Workflow
+
+1. User uploads files
+2. Backend saves files and triggers background task
+3. GPT analyzes contents and creates a YAML/JSON video plan
+4. Python reads the plan, generates audio and renders scenes
+5. FFmpeg stitches everything together
+6. (Optional) Watermark applied if user is unpaid
+7. Final video is sent to frontend
+
+---
+
+## Example YAML Plan
+
+```yaml
+frames:
+  - number: 1
+    type: "intro"
+    text: "Welcome"
+    voice: "tts:intro.wav"
+    duration: 5
+  - number: 2
+    image: "image1.jpg"
+    text: "Document summary..."
+    voice: "tts:image1.wav"
+    overlay: true
+    duration: 6
+  - number: 3
+    type: "outro"
+    text: "Thanks"
+    voice: "tts:outro.wav"
+    duration: 4
+```
+
+---
+
+## WebSocket Events
+
+- `task_started`
+- `parsing`
+- `gpt_ready`
+- `tts_complete`
+- `rendering_frame`
+- `final_rendering`
+- `complete`
+
+---
+
+## Run Locally
+
+```bash
+docker-compose up --build
+```
+
+---
 
 ## License
 
-This project is licensed under a proprietary license. Contact the developers for more details on usage and distribution.
+MIT (or your choice)
 
-## Support
+---
 
-For monetary contributions or additional suggestions, feel free to contact us at **hfwuds98@duck.com**.
+## Credits
+
+Built with love using GPT-4, FFmpeg, and open-source magic.
