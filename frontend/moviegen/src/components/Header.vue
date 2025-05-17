@@ -53,7 +53,7 @@ const fullPoem = `Помните! Через века, через года, — 
 
 // Parse the poem into pieces based on punctuation followed by optional space or newline
 // Wrap the result in ref() to make it reactive.
-const pieces = ref(fullPoem.split(/(?<=[.!?;\n])\s*/).filter(piece => piece.trim() !== ''));
+const pieces = ref(fullPoem.split(/(?<=[.!,?;\n])\s*/).filter(piece => piece.trim() !== ''));
 // Add a check in case the split/filter results in an empty array but the original text had content
 if (pieces.value.length === 0 && fullPoem.trim().length > 0) {
     // Fallback: if splitting failed but text is not empty, treat the whole poem as one piece
@@ -74,7 +74,7 @@ const currentPieceStyle = ref({});
 const nextPieceStyle = ref({});
 
 // Animation timing constants (adjust these values to fine-tune the animation look and speed)
-const pieceDelay = 3000; // 0.5 seconds delay between pieces starting their transition
+const pieceDelay = 2000; // 0.5 seconds delay between pieces starting their transition
 const animationDuration = 800; // Milliseconds for the CSS transition of each piece
 
 // To hold the timeout ID for cleanup
